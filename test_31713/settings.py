@@ -51,6 +51,9 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     'home',
     'users.apps.UsersConfig',
+    'apps.apps.AppsConfig',
+    'plans.apps.PlansConfig',
+    'subscriptions.apps.SubscriptionsConfig',
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',
@@ -184,6 +187,17 @@ REST_AUTH_SERIALIZERS = {
 REST_AUTH_REGISTER_SERIALIZERS = {
     # Use custom serializer that has no username and matches web signup
     "REGISTER_SERIALIZER": "home.api.v1.serializers.SignupSerializer",
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
 }
 
 # Custom user model
